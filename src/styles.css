@@ -1,8 +1,55 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --font-color-primary: #30865B; /* Primary font color */
+  --font-color-secondary: #708C55; /* Secondary font color */
+  --font-color-accent: #D0D874; /* Accent color for links or highlights */
+  --font-color-paragraph: #185537;
+}
+
+* {
+  font-family:'Mabry001',sans-serif;
+}
+@font-face {
+  font-family: Mabry001;
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("assets/fonts/MabryPro-Regular/MabryPro-Regular.woff") format("woff2");
+}
 
 body {
-    font-family: 'Work Sans', serif;
-    font-size: 48px;
-  }
+  /* background-color: #f4efe4; */
+  background-color: #eae5e5;
+  color: var(--font-color-primary); 
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--font-color-primary); /* Consistent heading colors */
+}
+p{
+  color: var(--font-color-paragraph); /* Consistent paragraph colors */
+
+}
+html, body {
+  height: 100%;
+}
+
+main {
+  height: 100%;
+}
+
+.mat-raised-button {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+mat-form-field-underline {
+  background-color: green !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: green !important;
+  border: #185537 !important;
+}
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: green !important;
+}
