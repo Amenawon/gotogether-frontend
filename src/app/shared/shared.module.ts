@@ -1,32 +1,19 @@
-
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from '../app.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { LayoutComponent } from './layout/layout.component'; 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-const routes :Routes=[
-    {
-        path:'',
-        component:LayoutComponent
-    }
-]
 @NgModule({
-  declarations: [ 
-    FooterComponent,
-    HeaderComponent,
-    LayoutComponent
-  ],
-  exports: [
-    FooterComponent,
-    HeaderComponent,
-    LayoutComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ]
+    declarations: [],
+    imports: [
+        CommonModule
+    ],
+    exports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule
+    ]
 })
 export class SharedModule { }
