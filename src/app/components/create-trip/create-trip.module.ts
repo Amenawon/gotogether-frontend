@@ -20,6 +20,6 @@ const routes: Routes = [
     ],
     exports: [
         CreateTripComponent
-    ]
+    ] 
 })
 export class CreateTripModule { }
