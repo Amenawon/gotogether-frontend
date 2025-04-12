@@ -2,6 +2,7 @@
     <h2 class="text-3xl font-bold">Tell us your travel preferences 🏕️🌴</h2>
     <p class="text-gray-500">Our trip planner will generate a custom itinerary.</p>
   
+    <form [formGroup]="tripForm">
     <!-- Location -->
     <h3 class="mt-8">Destination</h3>
     <input type="text" gplacesAutocomplete (onAddressChange)="onLocationSelect($event)" class="form-input" />
@@ -44,5 +45,6 @@
     <button class="mt-10 btn btn-primary" [disabled]="loading" (click)="generateTrip()">
       <span *ngIf="loading" class="animate-spin">⏳</span> Generate Trip
     </button>
+  </form>
   </div>
   
