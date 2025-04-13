@@ -1,0 +1,4 @@
+.container {
+  max-width: 600px; /* Optional: Limit the width of the content */
+  margin: 0 auto;
+}
