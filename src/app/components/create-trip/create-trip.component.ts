@@ -20,12 +20,7 @@ export class CreateTripComponent implements OnInit {
     startDate: new FormControl(''),
     endDate: new FormControl(''),
     budget: new FormControl(''),
-    noOfDays: new FormControl(''),
-    travelList: new FormControl(''),
-    travelOptions: new FormControl(''),
-    travelDuration: new FormControl(''),
-    travelActivities: new FormControl(''),
-    travelBudget: new FormControl(''),
+    noOfDays: new FormControl('')
   });
   budgetOptions = [
     { title: 'Economy', icon: '💰', desc: 'Budget-friendly options' },
