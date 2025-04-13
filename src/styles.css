@@ -53,3 +53,10 @@ mat-form-field-underline {
 .mat-form-field.mat-focused .mat-form-field-label {
   color: green !important;
 }
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+}
