@@ -2,3 +2,10 @@
   max-width: 600px; /* Optional: Limit the width of the content */
   margin: 0 auto;
 }
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+  }
