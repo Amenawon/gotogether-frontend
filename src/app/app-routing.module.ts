@@ -4,7 +4,7 @@ import { CreateTripComponent } from './components/create-trip/create-trip.compon
  
 const routes: Routes = [
   {
-    path: '',
+    path: '',  
     component: CreateTripComponent,
     children: [
       {
