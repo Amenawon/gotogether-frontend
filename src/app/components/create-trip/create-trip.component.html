@@ -5,7 +5,25 @@
   <form [formGroup]="tripForm">
     <!-- Location -->
     <h3 class="mt-8">Destination</h3>
-    <input type="text" gplacesAutocomplete (onAddressChange)="onLocationSelect($event)" class="form-input" />
+    <input 
+      type="text" 
+      gplacesAutocomplete 
+      (onAddressChange)="onLocationSelect($event)" 
+      class="form-input"
+      [ngModel]="tripForm.value.destination"
+      (ngModelChange)="onDestinationInput($event)"
+      [attr.autocomplete]="'off'"
+      placeholder="Enter a destination"
+      #autoInput
+    />
+    <ul *ngIf="destinations?.length" class="bg-white border rounded shadow mt-2 absolute z-10 w-full">
+      <li 
+      *ngFor="let dest of destinations" 
+      class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+      >
+      {{ dest }}
+      </li>
+    </ul>
 
     <!-- Number of Days -->
     <h3 class="mt-8">How many days?</h3>

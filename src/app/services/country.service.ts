@@ -11,6 +11,6 @@ export class CountryService {
   constructor(private httpClient:HttpClient) { }
 
   getCountries() {
-    return this.httpClient.get<Country[]>(`${environment.url}/countries`);
+    return this.httpClient.get<Country[]>(`${environment.url}/country/countries`);
   }
 }

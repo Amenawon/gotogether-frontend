@@ -2,6 +2,7 @@
 bazel-*
 test-project-host-*
 dist-schema/
+dist/
 .angular 
 
 # Yarn
