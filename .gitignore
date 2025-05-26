@@ -4,6 +4,7 @@ test-project-host-*
 dist-schema/
 dist/
 .angular 
+package-lock.json
 
 # Yarn
 .yarn/*
