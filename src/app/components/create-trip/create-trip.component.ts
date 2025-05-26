@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Country } from 'src/app/model/country';
 import { CountryService } from 'src/app/services/country.service';
 
@@ -18,13 +18,13 @@ export class CreateTripComponent implements OnInit {
     { title: 'Friends', icon: '👯‍♂️', desc: 'A group of friends' },
   ];
   loading = false;
-  tripForm: UntypedFormGroup = new UntypedFormGroup({
-    destination: new UntypedFormControl(''),
-    startDate: new UntypedFormControl(''),
-    endDate: new UntypedFormControl(''),
-    budget: new UntypedFormControl(''),
-    noOfDays: new UntypedFormControl(''),
-    traveler: new UntypedFormControl(''),
+  tripForm: FormGroup = new FormGroup({
+    destination: new FormControl(''),
+    startDate: new FormControl(''),
+    endDate: new FormControl(''),
+    budget: new FormControl(''),
+    noOfDays: new FormControl(''),
+    traveler: new FormControl(''),
   });
   budgetOptions = [
     { title: 'Economy', icon: '💰', desc: 'Budget-friendly options' },

@@ -45,7 +45,7 @@
     <h3 class="mt-8">Traveling with?</h3>
     <div class="grid grid-cols-4 gap-4">
       <div *ngFor="let option of travelPreferences" (click)="tripForm.patchValue({ traveler: option.title })"
-        [ngClass]="{ 'border-black': tripForm.value.traveler === option.title }"
+      [ngClass]="{ 'border-black': tripForm.value.traveler === option.title }"
         class="p-4 border rounded shadow hover:shadow-lg cursor-pointer">
         <div class="text-4xl">{{ option.icon }}</div>
         <div class="font-bold">{{ option.title }}</div>
