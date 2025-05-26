@@ -1,3 +1,15 @@
 :host { 
     text-align: center;
   }
+  ::ng-deep .dropdown-menu {
+  width: 23% !important;
+}
+:host ::ng-deep .dropdown-menu .dropdown-item {
+  color: green;
+}
+:host ::ng-deep .dropdown-menu .dropdown-item:hover,
+:host ::ng-deep .dropdown-menu .dropdown-item:focus {
+  background-color: #e0e0e0 !important; /* light grey */
+  color: #333 !important;
+  outline: none;
+}

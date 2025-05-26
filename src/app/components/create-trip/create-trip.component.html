@@ -5,7 +5,7 @@
   <form [formGroup]="tripForm">
     <!-- Location -->
     <h3 class="mt-8">Destination</h3>
-    <input 
+    <!-- <input 
       type="text" 
       gplacesAutocomplete 
       (onAddressChange)="onLocationSelect($event)" 
@@ -15,16 +15,21 @@
       [attr.autocomplete]="'off'"
       placeholder="Enter a destination"
       #autoInput
-    />
-    <ul *ngIf="destinations?.length" class="bg-white border rounded shadow mt-2 absolute z-10 w-full">
-      <li 
-      *ngFor="let dest of destinations" 
-      class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-      >
-      {{ dest }}
-      </li>
-    </ul>
+    /> -->
+    <!-- <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" /> -->
+ <div class="d-flex justify-content-center align-items-center">
 
+    <input
+    type="text"
+    class="form-control w-25"
+    formControlName="destination"
+    [ngbTypeahead]="search"
+    [resultFormatter]="formatter"
+    [inputFormatter]="formatter"
+    placeholder="Enter a destination"
+  />
+ </div>
+    
     <!-- Number of Days -->
     <h3 class="mt-8">How many days?</h3>
     <input type="number" formControlName="noOfDays" class="form-input" />
@@ -54,7 +59,8 @@
     </div>
 
     <button class="mt-10 bg-blue-400 text-white px-6 py-3 rounded shadow hover:bg-blue-600 hover:shadow-lg transition duration-300 ease-in-out" 
-      [disabled]="loading" 
+      [disabled]="loading || tripForm.invalid"
+      [ngClass]="{ 'opacity-50 cursor-not-allowed': loading || tripForm.invalid }" 
       (click)="generateTrip()">
       <span *ngIf="loading" class="animate-spin">⏳</span> Generate Trip
     </button>

@@ -1,21 +1,23 @@
-// import { NgModule } from '@angular/core';
-// import { CommonModule, JsonPipe } from '@angular/common';
-// import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgModule } from '@angular/core';
+import { CommonModule, JsonPipe } from '@angular/common';
+import { NgbModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 
-// @NgModule({
-//     declarations: [
+@NgModule({
+    declarations: [
         
-//     ],
-//     imports: [
-//         CommonModule,
-//         NgbTypeaheadModule,
-//         JsonPipe
-//     ],
-//     exports: [
-//         CommonModule,
-//         NgbTypeaheadModule,
-//         JsonPipe
-//     ]
-// })
-// export class SharedModule { }
+    ],
+    imports: [
+        CommonModule,
+        NgbModule,
+        NgbTypeaheadModule,
+        JsonPipe
+    ],
+    exports: [
+        CommonModule,
+        NgbModule,
+        NgbTypeaheadModule,
+        JsonPipe
+    ]
+})
+export class SharedModule { }
