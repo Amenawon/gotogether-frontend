@@ -10,11 +10,12 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { TripSummaryModule } from './components/trip-summary/trip-summary.module';
 
 @NgModule({
   declarations: [AppComponent],
   bootstrap: [AppComponent],
-  imports: [BrowserModule, SharedModule, AppRoutingModule, CreateTripModule],
+  imports: [BrowserModule, SharedModule, AppRoutingModule, CreateTripModule, TripSummaryModule],
   providers: [CountryService, provideHttpClient(withInterceptorsFromDi())],
 })
 export class AppModule {}

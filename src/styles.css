@@ -3,17 +3,19 @@
   --font-color-secondary: #708C55; /* Secondary font color */
   --font-color-accent: #D0D874; /* Accent color for links or highlights */
   --font-color-paragraph: #185537;
+  --font-size-paragraph: 14px;
 }
 
-* {
-  font-family:'Mabry001',sans-serif;
-}
 @font-face {
   font-family: Mabry001;
   font-style: normal;
   font-weight: 200 700;
   font-display: swap;
   src: url("assets/fonts/MabryPro-Regular/MabryPro-Regular.woff") format("woff2");
+}
+
+* {
+  font-family:'Mabry001',sans-serif;
 }
 
 body {
@@ -27,7 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 p{
   color: var(--font-color-paragraph); /* Consistent paragraph colors */
-
+  font-size: var(--font-size-paragraph);
 }
 html, body {
   height: 100%;

@@ -16,6 +16,6 @@ export class CountryService {
    * @returns An observable of an array of Country objects.
    */
   getCountries():Observable<Country[]> {
-    return this.httpClient.get<Country[]>(`${environment.url}/country/countries`);
+    return this.httpClient.get<Country[]>(`${environment.url}/country/get-countries`);
   }
 }

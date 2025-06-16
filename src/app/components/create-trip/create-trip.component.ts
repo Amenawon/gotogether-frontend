@@ -4,6 +4,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   OperatorFunction,
   Observable,
@@ -12,7 +13,9 @@ import {
   map,
 } from 'rxjs';
 import { Country } from 'src/app/model/country';
+import { GenerateItinerary } from 'src/app/model/generate-itinerary';
 import { CountryService } from 'src/app/services/country.service';
+import { ItineraryService } from 'src/app/services/itinerary.service';
 
 @Component({
   selector: 'app-create-trip',
@@ -59,7 +62,8 @@ export class CreateTripComponent implements OnInit {
 
   formatter = (country: Country) => country.name;
 
-  constructor(private countryService: CountryService) {}
+  constructor(private countryService: CountryService, private itineraryService:ItineraryService,
+    private router: Router ) {}
 
   ngOnInit(): void {
     this.getCountries();
@@ -73,22 +77,36 @@ export class CreateTripComponent implements OnInit {
         console.error('Error fetching countries:', err);
       },
     });
+  } 
+  generateTrip() {
+   console.log('Trip Form Data:', this.tripForm.value);
+   this.router.navigate(['/trip-summary'], {
+      state: { tripData: this.tripForm.value },
+    });
+    // const payload = this.buildTripPayload();
+    // this.itineraryService.generateItinerary(payload).subscribe({
+    //   next: (data) => {
+    //     console.log('Generated Itinerary:', data);
+    //     this.loading = false;
+    //     alert('Itinerary generated successfully!');
+    //   }
+    //   , error: (err) => {
+    //     console.error('Error generating itinerary:', err);
+    //     this.loading = false;
+    //     alert('Failed to generate itinerary. Please try again.');
+    //   }
+    // });
   }
 
-  selectDestination(country: string, $event: any) {
-    throw new Error('Method not implemented.');
-  }
-  onDestinationInput($event: any) {
-    throw new Error('Method not implemented.');
-  }
-  onLocationSelect($event: Event) {
-    throw new Error('Method not implemented.');
-  }
-  generateTrip() {
-    const payload = this.buildTripPayload();
-   console.log('Trip Form Data:', this.tripForm.value);
-  }
-  buildTripPayload() {
-    throw new Error('Method not implemented.');
-  }
+  buildTripPayload():GenerateItinerary {
+    const interests: string[] = [];
+    interests.push(this.tripForm.value.traveler);
+    interests.push(this.tripForm.value.budget);
+    const payload: GenerateItinerary = {
+      destination: this.tripForm.value.destination.name,
+      interests: interests,
+      days: this.tripForm.value.noOfDays,
+    }
+  return payload;
+ }
 }

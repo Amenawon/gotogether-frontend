@@ -37,8 +37,8 @@
     <!-- Budget -->
     <h3 class="mt-8">Select Budget</h3>
     <div class="grid grid-cols-3 gap-4">
-      <div *ngFor="let option of budgetOptions" (click)="tripForm.patchValue({ budget: option.title })"
-      [ngClass]="{ 'border-black': tripForm.value.budget === option.title }"
+      <div *ngFor="let option of budgetOptions" (click)="tripForm.patchValue({ budget: option.desc })"
+      [ngClass]="{ 'border-black': tripForm.value.budget === option.desc }"
       class="p-4 border rounded shadow hover:shadow-lg cursor-pointer">
         <div class="text-4xl">{{ option.icon }}</div>
         <div class="font-bold">{{ option.title }}</div>
@@ -49,8 +49,8 @@
     <!-- Travelers -->
     <h3 class="mt-8">Traveling with?</h3>
     <div class="grid grid-cols-4 gap-4">
-      <div *ngFor="let option of travelPreferences" (click)="tripForm.patchValue({ traveler: option.title })"
-      [ngClass]="{ 'border-black': tripForm.value.traveler === option.title }"
+      <div *ngFor="let option of travelPreferences" (click)="tripForm.patchValue({ traveler: option.desc })"
+      [ngClass]="{ 'border-black': tripForm.value.traveler === option.desc }"
         class="p-4 border rounded shadow hover:shadow-lg cursor-pointer">
         <div class="text-4xl">{{ option.icon }}</div>
         <div class="font-bold">{{ option.title }}</div>
