@@ -1,11 +1,32 @@
 <div class="trip-summary-container">
   <h2>Trip Summary</h2>
-  <ul>
-    <li><strong>Destination:</strong> {{ destination }}</li>
-    <li><strong>Start Date:</strong> {{ startDate | date }}</li>
-    <li><strong>End Date:</strong> {{ endDate | date }}</li>
-    <li><strong>Budget:</strong> {{ budget }}</li>
-    <li><strong>Travelers:</strong> {{ travelers }}</li>
-    <li><strong>Notes:</strong> {{ notes }}</li>
-  </ul>
+
+
+  <div class="container">
+    <h1>{{ itinerary.destination }} Itinerary</h1>
+    <p><strong>Duration:</strong> {{ itinerary.duration }}</p>
+    <p><strong>Interests:</strong> {{ itinerary.interests.join(', ') }}</p>
+    <p><strong>Best Time to Visit:</strong> {{ itinerary.best_time_to_visit }}</p>
+    <p><strong>Weather:</strong> {{ itinerary.weather }}</p>
+    <p><strong>Currency:</strong> {{ itinerary.currency }}</p>
+    <p><strong>Language:</strong> {{ itinerary.language }}</p>
+    <p><strong>Local Cuisine:</strong> {{ itinerary.local_cuisine }}</p>
+    <p><strong>Transportation:</strong> {{ itinerary.transportation }}</p>
+    <p><strong>Safety Tips:</strong> {{ itinerary.safety_tips }}</p>
+
+    <div *ngFor="let day of itinerary.itinerary" class="day">
+      <h2>Day {{ day.day }}: {{ day.title }}</h2>
+
+      <div *ngFor="let activity of day.activities" class="activity">
+        <img [src]="activity.image" [alt]="activity.name" width="200" height="150" />
+        <div class="activity-details">
+          <h4>{{ activity.time }} - {{ activity.name }}</h4>
+          <p><strong>Location:</strong> {{ activity.location }}</p>
+          <p>{{ activity.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>

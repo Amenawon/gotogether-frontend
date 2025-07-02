@@ -1,0 +1,31 @@
+:host { 
+    text-align: center;
+  }
+  .container {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.day {
+  margin-top: 30px;
+}
+
+.activity {
+  display: flex;
+  background: #f5f5f5;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.activity img {
+  object-fit: cover;
+}
+
+.activity-details {
+  padding: 10px 15px;
+}

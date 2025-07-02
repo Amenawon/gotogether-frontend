@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
   OperatorFunction,
@@ -33,10 +29,10 @@ export class CreateTripComponent implements OnInit {
   ];
   loading = false;
   tripForm: FormGroup = new FormGroup({
-    destination: new FormControl('',Validators.required),
-    budget: new FormControl('',Validators.required),
-    noOfDays: new FormControl('',Validators.required),
-    traveler: new FormControl('',Validators.required),
+    destination: new FormControl('', Validators.required),
+    budget: new FormControl('', Validators.required),
+    noOfDays: new FormControl('', Validators.required),
+    traveler: new FormControl('', Validators.required),
   });
   budgetOptions = [
     { title: 'Economy', icon: '💰', desc: 'Budget-friendly options' },
@@ -49,7 +45,7 @@ export class CreateTripComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       map((term) => {
-         if (!this.destinations || this.destinations.length === 0) {
+        if (!this.destinations || this.destinations.length === 0) {
           return [];
         }
         return term.length < 2
@@ -62,8 +58,11 @@ export class CreateTripComponent implements OnInit {
 
   formatter = (country: Country) => country.name;
 
-  constructor(private countryService: CountryService, private itineraryService:ItineraryService,
-    private router: Router ) {}
+  constructor(
+    private countryService: CountryService,
+    private itineraryService: ItineraryService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getCountries();
@@ -77,28 +76,28 @@ export class CreateTripComponent implements OnInit {
         console.error('Error fetching countries:', err);
       },
     });
-  } 
+  }
   generateTrip() {
-   console.log('Trip Form Data:', this.tripForm.value);
-   this.router.navigate(['/trip-summary'], {
-      state: { tripData: this.tripForm.value },
+    this.loading = true;
+    console.log('Trip Form Data:', this.tripForm.value);
+    const payload = this.buildTripPayload();
+    this.itineraryService.generateItinerary(payload).subscribe({
+      next: (data) => {
+        console.log('Generated Itinerary:', data);
+        this.loading = false;
+        this.router.navigate(['/trip-summary'], { state: { 
+          tripData: this.tripForm.value,
+          itinerary: data } });
+      },
+      error: (err) => {
+        console.error('Error generating itinerary:', err);
+        this.loading = false;
+        alert('Failed to generate itinerary. Please try again.');
+      },
     });
-    // const payload = this.buildTripPayload();
-    // this.itineraryService.generateItinerary(payload).subscribe({
-    //   next: (data) => {
-    //     console.log('Generated Itinerary:', data);
-    //     this.loading = false;
-    //     alert('Itinerary generated successfully!');
-    //   }
-    //   , error: (err) => {
-    //     console.error('Error generating itinerary:', err);
-    //     this.loading = false;
-    //     alert('Failed to generate itinerary. Please try again.');
-    //   }
-    // });
   }
 
-  buildTripPayload():GenerateItinerary {
+  buildTripPayload(): GenerateItinerary {
     const interests: string[] = [];
     interests.push(this.tripForm.value.traveler);
     interests.push(this.tripForm.value.budget);
@@ -106,7 +105,7 @@ export class CreateTripComponent implements OnInit {
       destination: this.tripForm.value.destination.name,
       interests: interests,
       days: this.tripForm.value.noOfDays,
-    }
-  return payload;
- }
+    };
+    return payload;
+  }
 }
