@@ -12,6 +12,6 @@ export class ItineraryService {
   constructor(private httpClient:HttpClient) { }
 
   generateItinerary(payload: GenerateItinerary): Observable<string> {
-    return this.httpClient.post<string>(`${environment.url}/itinerary/generate`, payload, { responseType: 'text' as 'json' });
+    return this.httpClient.post<string>(`${environment.url}/itineraries/generate`, payload, { responseType: 'text' as 'json' });
   }
 }
