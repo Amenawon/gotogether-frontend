@@ -1,12 +1,42 @@
+<div>
 <div class="sm:px-10 md:px-32 lg:px-56 px-5 mt-10">
+   <div *ngIf="loading" id="loader" class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-white/30">
+    <div class="animate-spin rounded-full h-10 w-10 border-4 border-blue-500 border-t-transparent"></div>
+  </div>
+
+    
+</div>
   <h2 class="text-3xl font-bold">Tell us your travel preferences 🏕️🌴</h2>
   <p class="text-gray-500">Our trip planner will generate a custom itinerary.</p>
 
   <form [formGroup]="tripForm">
     <!-- Location -->
     <h3 class="mt-8">Destination</h3>
-    <input type="text" gplacesAutocomplete (onAddressChange)="onLocationSelect($event)" class="form-input" />
+    <!-- <input 
+      type="text" 
+      gplacesAutocomplete 
+      (onAddressChange)="onLocationSelect($event)" 
+      class="form-input"
+      [ngModel]="tripForm.value.destination"
+      (ngModelChange)="onDestinationInput($event)"
+      [attr.autocomplete]="'off'"
+      placeholder="Enter a destination"
+      #autoInput
+    /> -->
+    <!-- <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" /> -->
+ <div class="d-flex justify-content-center align-items-center">
 
+    <input
+    type="text"
+    class="form-control w-25"
+    formControlName="destination"
+    [ngbTypeahead]="search"
+    [resultFormatter]="formatter"
+    [inputFormatter]="formatter"
+    placeholder="Enter a destination"
+  />
+ </div>
+    
     <!-- Number of Days -->
     <h3 class="mt-8">How many days?</h3>
     <input type="number" formControlName="noOfDays" class="form-input" />
@@ -14,8 +44,8 @@
     <!-- Budget -->
     <h3 class="mt-8">Select Budget</h3>
     <div class="grid grid-cols-3 gap-4">
-      <div *ngFor="let option of budgetOptions" (click)="tripForm.patchValue({ budget: option.title })"
-      [ngClass]="{ 'border-black': tripForm.value.budget === option.title }"
+      <div *ngFor="let option of budgetOptions" (click)="tripForm.patchValue({ budget: option.desc })"
+      [ngClass]="{ 'border-black': tripForm.value.budget === option.desc }"
       class="p-4 border rounded shadow hover:shadow-lg cursor-pointer">
         <div class="text-4xl">{{ option.icon }}</div>
         <div class="font-bold">{{ option.title }}</div>
@@ -26,8 +56,8 @@
     <!-- Travelers -->
     <h3 class="mt-8">Traveling with?</h3>
     <div class="grid grid-cols-4 gap-4">
-      <div *ngFor="let option of travelPreferences" (click)="tripForm.patchValue({ traveler: option.title })"
-        [ngClass]="{ 'border-black': tripForm.value.traveler === option.title }"
+      <div *ngFor="let option of travelPreferences" (click)="tripForm.patchValue({ traveler: option.desc })"
+      [ngClass]="{ 'border-black': tripForm.value.traveler === option.desc }"
         class="p-4 border rounded shadow hover:shadow-lg cursor-pointer">
         <div class="text-4xl">{{ option.icon }}</div>
         <div class="font-bold">{{ option.title }}</div>
@@ -36,7 +66,8 @@
     </div>
 
     <button class="mt-10 bg-blue-400 text-white px-6 py-3 rounded shadow hover:bg-blue-600 hover:shadow-lg transition duration-300 ease-in-out" 
-      [disabled]="loading" 
+      [disabled]="loading || tripForm.invalid"
+      [ngClass]="{ 'opacity-50 cursor-not-allowed': loading || tripForm.invalid }" 
       (click)="generateTrip()">
       <span *ngIf="loading" class="animate-spin">⏳</span> Generate Trip
     </button>

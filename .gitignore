@@ -1,9 +1,10 @@
 # Outputs
 bazel-*
 test-project-host-*
-dist/
 dist-schema/
+dist/
 .angular 
+package-lock.json
 
 # Yarn
 .yarn/*
