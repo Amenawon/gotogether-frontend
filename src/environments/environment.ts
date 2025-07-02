@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url:'http://localhost:3000', // Update with your actual API URL
-  // url: 'https://gotogether-i10c.onrender.com', // Update with your actual API URL
+  // url:'http://localhost:3000', // Update with your actual API URL
+  url: 'https://gotogether-i10c.onrender.com', // Update with your actual API URL
 };
 
 /*
